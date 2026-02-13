@@ -8,25 +8,42 @@ Kiro Powers are packages that extend Kiro's capabilities by bundling documentati
 
 ## Available Powers
 
-Browse the `powers/` directory to see all available powers. Each power includes:
-
-- **POWER.md** - Complete documentation and usage guide
-- **power.json** - Power configuration and metadata
-- **Steering files** (optional) - Workflow guides for specific tasks
-- **MCP servers** (optional) - Backend tools and integrations
+| Power | Description | Keywords |
+|-------|-------------|----------|
+| [agent-skills](powers/agent-skills/) | Create and manage custom agents with reusable skills following the Agent Skills specification | agents, skills, custom agents, code review, documentation, testing, automation |
 
 ## Installation
 
-### Using Kiro UI
+### Install from GitHub (Recommended)
 
-1. Open the Command Palette in Kiro
-2. Search for "Configure Powers" or use the Powers panel
-3. Browse and install powers from this repository
+Install individual powers directly from this repository:
+
+```
+# In Kiro, ask:
+"Install the agent-skills power from https://github.com/YOUR_USERNAME/YOUR_REPO/tree/main/powers/agent-skills"
+```
+
+Or use the Kiro Powers UI:
+1. Open Command Palette → "Configure Powers"
+2. Click "Install from URL"
+3. Enter: `https://github.com/YOUR_USERNAME/YOUR_REPO/tree/main/powers/agent-skills`
+
+### Install All Powers
+
+Clone this repository to install all powers at once:
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+
+# Copy powers to your Kiro directory
+cp -r YOUR_REPO/powers/* ~/.kiro/powers/
+```
 
 ### Manual Installation
 
-1. Clone this repository or download a specific power
-2. Copy the power directory to your Kiro powers location:
+1. Download or clone this repository
+2. Copy individual power directories to:
    - User-level: `~/.kiro/powers/`
    - Workspace-level: `.kiro/powers/`
 
@@ -35,34 +52,49 @@ Browse the `powers/` directory to see all available powers. Each power includes:
 After installing a power, activate it in Kiro:
 
 ```
-Ask Kiro to activate the power by name, or use the # context menu
+# Activate by mentioning keywords
+"I need help with custom agents"
+
+# Or activate explicitly
+"Activate the agent-skills power"
+
+# Or use the # context menu
+Type # and select the power
 ```
 
 Powers load their documentation and tools on-demand, keeping your context focused.
 
-## Contributing
+## Power Structure
 
-Want to add a new power? See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-Each power should follow this structure:
+Each power in this repository follows this structure:
 
 ```
 powers/
-└── your-power-name/
+└── power-name/
     ├── power.json          # Required: Power metadata
     ├── POWER.md           # Required: Documentation
     ├── steering/          # Optional: Workflow guides
     │   └── guide.md
-    └── mcp/              # Optional: MCP server configs
-        └── server.json
+    └── mcpServers/        # Optional: MCP server configs
+        └── server-name/
+            └── config.json
 ```
 
-## Example Powers
+## Contributing
 
-This repository includes:
+Want to add a new power? See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Power structure and requirements
+- Documentation standards
+- Testing and validation
+- Submission process
 
-- **agent-skills**: Create and manage custom agents with reusable skills following the Agent Skills specification
+## Resources
+
+- [Kiro Powers Documentation](https://kiro.dev/docs/powers/)
+- [Creating Powers Guide](https://kiro.dev/docs/powers/create/)
+- [Agent Skills Specification](https://agentskills.io/)
+- [AGENTS.md Convention](https://agents.md/)
 
 ## License
 
-MIT
+MIT - See individual power directories for specific licenses
