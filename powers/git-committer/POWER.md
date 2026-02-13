@@ -1,6 +1,15 @@
+---
+name: git-committer
+displayName: Git Committer
+description: Helps create well-formatted conventional commits following best practices
+keywords: [git, commits, conventional commits, version control, commit messages]
+version: 1.0.0
+license: MIT
+---
+
 # Git Committer Power
 
-A power to help you create well-formatted conventional commits following best practices.
+Create well-formatted conventional commits following best practices.
 
 ## What is Git Committer?
 
@@ -9,10 +18,10 @@ Git Committer helps you write consistent, meaningful commit messages that follow
 ## Features
 
 - Conventional Commits v1.0.0 specification support
-- Project-specific scope recommendations
 - Commit message formatting guidance
 - Breaking change handling
 - Multi-line commit support with body and footers
+- Project-specific scope recommendations
 
 ## Usage
 

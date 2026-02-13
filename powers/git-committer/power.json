@@ -1,9 +1,0 @@
-{
-  "name": "git-committer",
-  "displayName": "Git Committer",
-  "version": "1.0.0",
-  "description": "Helps create well-formatted conventional commits following best practices",
-  "keywords": ["git", "commits", "conventional commits", "version control", "commit messages"],
-  "license": "MIT",
-  "mcpServers": {}
-}

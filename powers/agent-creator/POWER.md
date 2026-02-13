@@ -1,44 +1,36 @@
-# Agent Skills Power
+---
+name: agent-creator
+displayName: Agent Creator
+description: Create and manage custom agents with specialized capabilities for automation, code review, documentation, testing, and more
+keywords: [agents, custom agents, agent creator, code review, documentation, testing, automation]
+version: 1.0.0
+license: MIT
+---
 
-Create and manage custom AI agents with reusable skills following the [Agent Skills specification](https://agentskills.io/).
+# Agent Creator Power
+
+Create and manage custom AI agents for specialized tasks in your Kiro workflow.
 
 ## Overview
 
-This power helps you build, configure, and manage custom agents in Kiro. Each agent is specialized for specific tasks and leverages modular, reusable skills that follow industry standards.
+This power helps you build, configure, and manage custom agents in Kiro. Each agent is specialized for specific tasks like code review, documentation generation, testing, and more.
 
 ## What You Can Do
 
 - Create custom Kiro agents with proper structure
-- Add reusable skills to agents following Agent Skills specification
 - Generate agent configurations with best practices
-- Organize skills into modular, reusable components
-- Build agents for code review, documentation, testing, and more
+- Build specialized agents for code review, documentation, testing, and more
+- Configure agent tools and system prompts
+- Manage agent lifecycle and updates
 
-## Agent Architecture
+## Agent Structure
 
-### Agent Structure
+Agents are stored in the `.kiro/agents/` directory:
 
 ```
 .kiro/
 └── agents/
     └── your-agent-name.json
-```
-
-Or with embedded skills:
-
-```
-.kiro/
-└── agents/
-    └── your-agent/
-        ├── agent.json
-        └── skills/
-            ├── skill-name/
-            │   ├── SKILL.md
-            │   ├── scripts/
-            │   ├── references/
-            │   └── assets/
-            └── another-skill/
-                └── SKILL.md
 ```
 
 ### Agent Configuration Format
@@ -59,22 +51,7 @@ Or with embedded skills:
 }
 ```
 
-### Skill Format (SKILL.md)
 
-```markdown
----
-name: skill-name
-description: What this skill does and when to use it
-license: MIT
-metadata:
-  author: Chart AI Team
-  version: "1.0.0"
----
-
-# Skill Name
-
-Detailed skill instructions and content...
-```
 
 ## Example Agents
 
@@ -119,85 +96,47 @@ Generates comprehensive test suites.
 "Create a custom agent called 'code-reviewer' that analyzes code quality"
 ```
 
-### Add a Skill to an Agent
+### Use an Existing Agent
 
 ```
-"Add a 'security-audit' skill to my code-reviewer agent"
+"Use the code-reviewer agent to review my changes"
 ```
 
-### Generate Agent with Skills
+### Update an Agent
 
 ```
-"Create a documentation agent with API documentation and example generation skills"
+"Update the code-reviewer agent to also check for security issues"
 ```
 
 ## Naming Conventions
 
-- Agent files: `your-agent-name.json` or `your-agent/agent.json`
+- Agent files: `your-agent-name.json`
 - Agent names: lowercase with hyphens (e.g., `code-reviewer`)
-- Skill directories: lowercase with hyphens (e.g., `requirements-analysis`)
-- Skill names in YAML: lowercase letters, numbers, hyphens only (max 64 chars)
-
-## Skill Requirements
-
-**Required Fields:**
-- `name`: Skill identifier (lowercase, hyphens, max 64 chars)
-- `description`: What the skill does (max 1024 chars)
-
-**Optional Fields:**
-- `license`: License name or reference
-- `compatibility`: Environment requirements
-- `metadata`: Additional key-value pairs (author, version, etc.)
-- `allowed-tools`: Pre-approved tools (experimental)
-
-**Optional Directories:**
-- `scripts/`: Executable scripts
-- `references/`: Additional documentation
-- `assets/`: Templates, images, data files
+- Display names: Human-readable format (e.g., "Code Reviewer")
 
 ## Best Practices
 
-1. **Focused Skills**: Keep skills single-purpose and reusable
-2. **Clear Descriptions**: Explain what the skill does and when to use it
-3. **Proper Versioning**: Follow semantic versioning (MAJOR.MINOR.PATCH)
-4. **Skill Size**: Keep SKILL.md under 500 lines (use references/ for detailed docs)
-5. **Validation**: Test agent configurations before deployment
-6. **Tool Access**: Grant only necessary tools to agents
-
-## Standards
-
-This power follows:
-- [Agent Skills](https://agentskills.io/) specification
-- [AGENTS.md](https://agents.md/) convention
-- JSON for structured configuration
-- Markdown with YAML frontmatter for skills
-
-## Validation
-
-Validate your skills using the Agent Skills CLI:
-
-```bash
-skills-ref validate ./skill-name
-```
+1. **Focused Purpose**: Each agent should have a clear, specific role
+2. **Clear Descriptions**: Explain what the agent does and when to use it
+3. **Minimal Tools**: Grant only the tools necessary for the agent's tasks
+4. **Detailed Prompts**: Provide specific instructions in the system prompt
+5. **Test Thoroughly**: Verify agent behavior with various inputs
+6. **Iterate**: Refine based on results and feedback
 
 ## Troubleshooting
 
 **Agent not loading?**
-- Check JSON syntax in agent config
-- Verify skill references match actual skill directories
-- Ensure SKILL.md has valid YAML frontmatter
+- Check JSON syntax in agent configuration
+- Verify agent is in `.kiro/agents/` directory
+- Ensure all required fields are present
 
-**Skill not working?**
-- Validate required fields (name, description)
-- Check name format (lowercase, hyphens only)
-- Verify description length (max 1024 chars)
+**Agent not behaving as expected?**
+- Review and refine the system prompt
+- Check if the agent has the necessary tools
+- Add more specific examples
+- Test with simpler tasks first
 
-**Global agent not accessible?**
-- Check agent is in `.kiro/agents/` directory
-- Verify agent configuration file exists
-- Ensure JSON syntax is valid
-
-## Resources
-
-- [Agent Skills Specification](https://agentskills.io/specification)
-- [AGENTS.md Convention](https://agents.md/)
+**Agent too slow?**
+- Reduce tool access to only what's needed
+- Make the system prompt more focused
+- Break complex tasks into smaller steps
