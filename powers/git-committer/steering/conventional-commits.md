@@ -87,6 +87,11 @@ Update all clients to use new authentication flow.
 
 6. **Add Footers** (if applicable): Reference issues, note breaking changes
 
+7. **Push Confirmation**: After the commit is created, always ask the user whether they want to push to the remote.
+   - If the user confirms, execute `git push`.
+   - If the user declines, inform them the commit remains local and no push was made.
+   - If the push fails, display the error message and clearly state that the commit was created successfully but the push did not succeed.
+
 ## Complete Example
 
 ```

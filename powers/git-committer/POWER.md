@@ -22,6 +22,7 @@ Git Committer helps you write consistent, meaningful commit messages that follow
 - Breaking change handling
 - Multi-line commit support with body and footers
 - Project-specific scope recommendations
+- Post-commit push confirmation prompt to prevent accidental pushes
 
 ## Usage
 
@@ -78,6 +79,14 @@ feat(api)!: change authentication method
 BREAKING CHANGE: API now requires OAuth2 tokens.
 Update all clients to use new authentication flow.
 ```
+
+## Push Confirmation
+
+After every successful commit, Kiro will ask whether you want to push the changes to the remote repository. This prevents accidental pushes and keeps you in control.
+
+- If you confirm, Kiro runs `git push` for you.
+- If you decline, the commit stays local and no push is made.
+- If the push fails, Kiro shows the error and lets you know the commit was created successfully but the push did not go through.
 
 ## Best Practices
 
