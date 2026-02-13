@@ -1,10 +1,6 @@
----
-inclusion: auto
----
+# Conventional Commits Guide
 
-# Conventional Commits for This Repository
-
-When creating git commits for this repository, follow the Conventional Commits v1.0.0 specification.
+When creating git commits, follow the Conventional Commits v1.0.0 specification.
 
 ## Commit Message Format
 
@@ -30,15 +26,18 @@ When creating git commits for this repository, follow the Conventional Commits v
 - `chore`: Maintenance tasks
 - `revert`: Revert a previous commit
 
-## Scopes for This Repository
+## Common Scopes
 
 Use these scopes based on what changed:
 
-- `powers`: Changes to power definitions in `powers/` directory
-- `agents`: Changes to agent configurations in `.kiro/agents/`
-- `docs`: Documentation files (README, CONTRIBUTING, etc.)
-- `steering`: Steering files in `.kiro/steering/`
-- `examples`: Example code or configurations
+- `powers`: Changes to power definitions
+- `agents`: Changes to agent configurations
+- `docs`: Documentation files
+- `steering`: Steering files
+- `config`: Configuration changes
+- `api`: API changes
+- `ui`: User interface changes
+- `core`: Core functionality
 
 ## Description Rules
 
@@ -48,15 +47,15 @@ Use these scopes based on what changed:
 - Keep under 72 characters
 - Be specific and clear
 
-## Examples for This Repository
+## Examples
 
 ```
-feat(powers): add agent-skills power
-fix(powers): correct power.json schema validation
+feat(powers): add git-committer power
+fix(api): handle null response correctly
 docs(readme): update installation instructions
-docs(contributing): add power creation guidelines
-chore: update .gitignore
-feat(steering): add conventional commits guide
+refactor(core): simplify authentication logic
+test(api): add integration tests for auth flow
+chore: update dependencies
 ```
 
 ## Breaking Changes
@@ -64,10 +63,10 @@ feat(steering): add conventional commits guide
 Add `!` after type/scope or include `BREAKING CHANGE:` in footer:
 
 ```
-feat(powers)!: change power.json schema
+feat(api)!: change authentication method
 
-BREAKING CHANGE: power.json now requires 'version' field.
-Update all power configs to include version.
+BREAKING CHANGE: API now requires OAuth2 tokens.
+Update all clients to use new authentication flow.
 ```
 
 ## Workflow for Creating Commits
@@ -80,7 +79,7 @@ Update all power configs to include version.
 
 2. **Determine Type**: Choose the appropriate commit type based on the primary change
 
-3. **Identify Scope**: Use the scope that matches the changed area (powers, agents, docs, etc.)
+3. **Identify Scope**: Use the scope that matches the changed area
 
 4. **Write Description**: Clear, concise summary in imperative mood
 
@@ -91,12 +90,12 @@ Update all power configs to include version.
 ## Complete Example
 
 ```
-feat(powers): add agent-skills power
+feat(powers): add git-committer power
 
-Create a new power for building custom agents with reusable skills.
-Includes documentation, steering files, and examples.
+Create a new power for helping with conventional commits.
+Includes documentation, steering files, and formatting guidance.
 
-Follows Agent Skills specification and Kiro power structure.
+Follows Conventional Commits v1.0.0 specification.
 
 Closes #123
 ```

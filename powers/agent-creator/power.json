@@ -1,0 +1,9 @@
+{
+  "name": "agent-creator",
+  "displayName": "Agent Creator",
+  "version": "1.0.0",
+  "description": "Create and manage custom agents with specialized capabilities for automation, code review, documentation, testing, and more",
+  "keywords": ["agents", "custom agents", "agent creator", "code review", "documentation", "testing", "automation"],
+  "license": "MIT",
+  "mcpServers": {}
+}
