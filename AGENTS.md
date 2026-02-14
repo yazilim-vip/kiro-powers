@@ -151,3 +151,189 @@ Common tool groups for agents:
 ## Need Help?
 
 Ask Kiro: "Help me create a custom agent for [your use case]"
+
+---
+
+# Creating Kiro Powers
+
+This section covers creating Kiro Powers - packages that bundle documentation, steering files, and optionally MCP servers.
+
+## What are Kiro Powers?
+
+Powers are reusable packages that provide:
+- Documentation (POWER.md)
+- Workflow guides (steering files)
+- MCP server integrations (optional)
+- Focused capabilities for specific domains
+
+## Power Structure
+
+```
+powers/
+└── power-name/
+    ├── POWER.md              # Main documentation (required)
+    ├── mcp.json              # MCP server config (if applicable)
+    └── steering/             # Additional guides (optional)
+        ├── getting-started.md
+        └── best-practices.md
+```
+
+## Creating a Power
+
+### 1. Create Directory Structure
+
+```bash
+mkdir -p powers/power-name/steering
+```
+
+### 2. Create POWER.md
+
+Every POWER.md MUST start with YAML frontmatter:
+
+```yaml
+---
+name: power-name
+displayName: Power Display Name
+description: Brief one-line description
+keywords: [keyword1, keyword2, keyword3]
+version: 1.0.0
+license: MIT
+---
+```
+
+### 3. Document Structure
+
+```markdown
+# Power Display Name
+
+Brief tagline.
+
+## What is [Power Name]?
+
+2-3 sentences explaining purpose.
+
+## Features
+
+- Key capability 1
+- Key capability 2
+- Key capability 3
+
+## Usage
+
+Show example commands:
+
+```
+"Example usage"
+```
+
+## Quick Start
+
+Minimal setup and examples.
+
+## Best Practices
+
+1. **Practice Name**: Explanation
+2. **Another Practice**: Explanation
+
+## Troubleshooting
+
+**Problem?**
+- Solution
+```
+
+## POWER.md Requirements
+
+### Frontmatter Fields
+- `name`: lowercase-with-hyphens (e.g., `git-committer`)
+- `displayName`: Human-readable (e.g., "Git Committer")
+- `description`: Single sentence
+- `keywords`: Array of 5-10 search terms
+- `version`: Semantic version (1.0.0)
+- `license`: MIT
+
+### Style Guidelines
+- Direct, conversational tone
+- Action-oriented language
+- Minimal, focused code examples
+- Under 300 lines total
+- Scannable sections with bullets
+
+### Sections to Include
+1. Title and tagline
+2. "What is [Name]?" explanation
+3. Features list
+4. Usage examples
+5. Quick Start (if applicable)
+6. Common Patterns or Examples
+7. Best Practices
+8. Troubleshooting
+
+### Sections to Avoid
+- Redundant "Overview" sections
+- Exhaustive feature lists
+- Separate "Tips" and "Best Practices"
+- Marketing language
+
+## MCP Server Integration
+
+If your power includes MCP servers, create `mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "package-name@latest"],
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+## Steering Files
+
+Optional guides for specific workflows:
+- `getting-started.md` - Setup and basic usage
+- `best-practices.md` - Detailed guidelines
+- `advanced-patterns.md` - Complex use cases
+
+Keep steering files:
+- Focused on specific workflows
+- Separate from POWER.md content
+- Actionable and practical
+
+## Examples
+
+Good power examples in this repository:
+- `powers/git-committer/` - Clean structure
+- `powers/agent-creator/` - Good documentation
+- `powers/react-mui-dev/` - MCP integration
+
+## Naming Conventions
+
+- Power directory: `power-name` (lowercase, hyphens)
+- POWER.md: Always `POWER.md` (uppercase)
+- Steering files: descriptive names (lowercase, hyphens)
+- MCP config: Always `mcp.json`
+
+## Checklist
+
+Before committing a new power:
+
+- [ ] Directory structure created
+- [ ] POWER.md has YAML frontmatter
+- [ ] All frontmatter fields complete
+- [ ] Name uses lowercase-with-hyphens
+- [ ] Keywords array has 5-10 terms
+- [ ] Document follows structure guidelines
+- [ ] Code examples use syntax highlighting
+- [ ] Tone is direct and practical
+- [ ] File under 300 lines
+- [ ] mcp.json included (if using MCP)
+- [ ] Steering files focused and actionable
+
+## Need Help?
+
+Ask Kiro: "Help me create a Kiro power for [your use case]"

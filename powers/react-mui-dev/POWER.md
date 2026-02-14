@@ -1,49 +1,70 @@
+---
+name: react-mui-dev
+displayName: React + Material-UI Development
+description: Build modern React applications with Material-UI components using the official MUI MCP server
+keywords: [react, mui, material-ui, components, theming, responsive design, ui development]
+version: 1.0.0
+license: MIT
+---
+
 # React + Material-UI Development Power
 
-A comprehensive power for building modern React applications with Material-UI (MUI) components, leveraging the official MUI MCP server for component guidance and best practices.
+Build modern React applications with Material-UI components and best practices.
 
-## What This Power Does
+## What is React + MUI Development?
 
-This power helps you:
-- Build React applications with Material-UI components
-- Get real-time MUI component documentation and examples
-- Follow Material Design principles and MUI best practices
-- Create responsive, accessible UI components
-- Integrate MUI theming and styling solutions
+This power helps you develop React applications using Material-UI (MUI), Google's Material Design implementation for React. It includes the official MUI MCP server for real-time component documentation, examples, and guidance.
 
-## MCP Server Integration
+## Features
 
-This power includes the official MUI MCP server (`@mui/mcp`) which provides:
-- Component API documentation
-- Usage examples and patterns
-- Theming guidance
+- Official MUI MCP server integration (`@mui/mcp`)
+- Component API documentation and examples
+- Material Design principles and patterns
+- Responsive design with Grid and breakpoints
+- Theme customization and styling guidance
+- Form handling with MUI components
 - Accessibility best practices
-- Migration guides
+- Icon integration with `@mui/icons-material`
 
-## Key Capabilities
+## Usage
 
-- React component development with hooks and modern patterns
-- Material-UI component integration and customization
-- Responsive design with MUI Grid and breakpoints
-- Theme customization and styling with `sx` prop and styled components
-- Form handling with MUI form components
-- Accessibility-compliant UI development
+Ask Kiro for help with React and MUI development:
 
-## Getting Started
+```
+"Show me how to use MUI Button with variants"
+"Create a responsive MUI Card layout"
+"How do I customize the MUI theme colors?"
+"Create a form with MUI TextField and validation"
+```
 
-1. Ask about MUI components: "Show me how to use MUI Button with variants"
-2. Request component examples: "Create a responsive MUI Card layout"
-3. Get theming help: "How do I customize the MUI theme colors?"
-4. Build forms: "Create a form with MUI TextField and validation"
+Kiro will provide component examples, theming guidance, and best practices using the MUI MCP server.
 
-## Best Practices
+## Quick Start
 
-- Use MUI's `sx` prop for component-level styling
-- Leverage the theme system for consistent design
-- Follow Material Design guidelines
-- Ensure responsive layouts with Grid and breakpoints
-- Maintain accessibility with proper ARIA attributes
-- Use MUI icons from `@mui/icons-material`
+### Installation
+
+```bash
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material  # Optional: for icons
+```
+
+### Basic Setup
+
+```jsx
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const theme = createTheme();
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* Your components */}
+    </ThemeProvider>
+  );
+}
+```
 
 ## Common Patterns
 

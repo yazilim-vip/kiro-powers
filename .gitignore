@@ -26,4 +26,3 @@ __pycache__/
 # Environment variables
 .env
 .env.local
-.kiro
