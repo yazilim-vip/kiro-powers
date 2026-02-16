@@ -1,6 +1,29 @@
-# Creating a Reusable Skill
+# Creating Agent Skills
 
-This guide shows you how to create skills that follow the Agent Skills specification.
+This guide covers creating reusable Agent Skills in Kiro following the open [agentskills.io](https://agentskills.io) standard.
+
+## What Are Skills?
+
+Skills are modular instruction packages that teach the agent new capabilities. They load on-demand — only consuming context when relevant — keeping your context window lean.
+
+### Skills vs Steering vs Powers
+
+- **Steering** — Always-on guidance (coding standards, project conventions)
+- **Skills** — On-demand capabilities the agent learns when needed
+- **Powers** — Superset that can also include MCP servers and rules
+
+A Terraform skill won't consume context when you're writing React components. A security review skill stays dormant during routine refactoring.
+
+## Skill Locations
+
+- **Workspace**: `.kiro/skills/<skill-name>/SKILL.md` — project-specific
+- **Global**: `~/.kiro/skills/<skill-name>/SKILL.md` — available across all workspaces
+
+Workspace skills take precedence when names collide, so teams can override global defaults.
+
+## Skill Discovery
+
+At startup, Kiro only loads the `name` and `description` from each skill's frontmatter. The full instructions load into context only when the agent determines the skill is relevant or you explicitly request it.
 
 ## Skill Structure
 
@@ -15,19 +38,19 @@ skill-name/
 ## Step 1: Create Skill Directory
 
 ```bash
-mkdir -p .kiro/agents/your-agent/skills/skill-name
+mkdir -p .kiro/skills/skill-name
 ```
 
 Use lowercase letters, numbers, and hyphens only.
 
 ## Step 2: Create SKILL.md
 
-Every skill must have a `SKILL.md` file with YAML frontmatter:
+Every skill must have a `SKILL.md` with YAML frontmatter:
 
 ```markdown
 ---
 name: skill-name
-description: A clear description of what this skill does and when to use it
+description: What this skill does and when to use it (max 1024 chars)
 license: MIT
 metadata:
   author: Your Name
@@ -39,93 +62,44 @@ metadata:
 
 ## Overview
 
-Brief overview of the skill's purpose.
+Brief explanation of the skill's purpose.
 
 ## When to Use
 
-Describe scenarios where this skill is applicable.
+Scenarios where this skill should be applied.
 
 ## Instructions
 
-Detailed step-by-step instructions.
+Step-by-step instructions for using this skill.
 
 ## Examples
 
-Concrete examples demonstrating the skill.
-
-## Best Practices
-
-Tips for effective use of this skill.
+Concrete examples demonstrating the skill in action.
 ```
 
-## Required Fields
+### Required Frontmatter Fields
 
-- `name`: Lowercase letters, numbers, hyphens only (max 64 chars)
-- `description`: What the skill does and when to use it (max 1024 chars)
+- `name` — Lowercase letters, numbers, hyphens only (max 64 chars)
+- `description` — What the skill does and when to use it (max 1024 chars)
 
-## Optional Fields
+### Optional Frontmatter Fields
 
-- `license`: License name or SPDX identifier
-- `compatibility`: Environment requirements
-- `metadata`: Additional key-value pairs
-  - `author`: Skill creator
-  - `version`: Semantic version
-  - `tags`: Categorization tags
-- `allowed-tools`: Pre-approved tools (experimental)
+- `license` — License name or SPDX identifier
+- `compatibility` — Environment requirements
+- `metadata` — Additional key-value pairs (author, version, tags)
 
 ## Step 3: Add Optional Resources
 
-### Scripts Directory
+**Scripts** (`scripts/`): Executable code supporting the skill's functionality.
 
-For executable code:
-
-```bash
-mkdir -p skill-name/scripts
-```
-
-Add scripts that support the skill's functionality.
-
-### References Directory
-
-For detailed documentation:
-
-```bash
-mkdir -p skill-name/references
-```
-
-Use when SKILL.md exceeds 500 lines. Link from SKILL.md:
-
+**References** (`references/`): Detailed documentation when SKILL.md exceeds 500 lines. Link from SKILL.md:
 ```markdown
 See [detailed guide](references/detailed-guide.md) for more information.
 ```
 
-### Assets Directory
+**Assets** (`assets/`): Templates, configuration files, images, or data files.
 
-For templates and static resources:
-
-```bash
-mkdir -p skill-name/assets
-```
-
-Include templates, configuration files, images, or data files.
-
-## Step 4: Keep It Focused
-
-Good skills are:
-- Single-purpose
-- Reusable across agents
-- Well-documented
-- Under 500 lines in SKILL.md
-
-## Step 5: Validate
-
-Use the Agent Skills CLI:
-
-```bash
-skills-ref validate ./skill-name
-```
-
-## Example: Requirements Analysis Skill
+## Skill Example
 
 ```markdown
 ---
@@ -133,7 +107,7 @@ name: requirements-analysis
 description: Gather and document functional and non-functional requirements for software projects
 license: MIT
 metadata:
-  author: Your Name
+  author: Team
   version: "1.0.0"
   tags: ["planning", "requirements", "documentation"]
 ---
@@ -142,71 +116,36 @@ metadata:
 
 ## Overview
 
-This skill helps gather, organize, and document software requirements systematically.
+Systematically gather, organize, and document software requirements.
 
 ## When to Use
 
-- Starting a new project
+- Starting a new project or feature
 - Clarifying project scope
-- Documenting stakeholder needs
 - Creating technical specifications
 
 ## Instructions
 
-1. **Identify Stakeholders**
-   - List all project stakeholders
-   - Understand their roles and needs
-
-2. **Gather Functional Requirements**
-   - What should the system do?
-   - User stories and use cases
-   - Feature lists
-
-3. **Gather Non-Functional Requirements**
-   - Performance expectations
-   - Security requirements
-   - Scalability needs
-   - Compliance requirements
-
-4. **Document Requirements**
-   - Use clear, testable language
-   - Prioritize requirements (must-have, should-have, nice-to-have)
-   - Include acceptance criteria
-
-5. **Validate Requirements**
-   - Review with stakeholders
-   - Check for completeness
-   - Ensure feasibility
+1. Identify stakeholders and their needs
+2. Gather functional requirements (user stories, use cases)
+3. Gather non-functional requirements (performance, security, scalability)
+4. Document with clear, testable language and acceptance criteria
+5. Validate with stakeholders
 
 ## Examples
 
 ### User Story Format
-```
-As a [user type]
-I want to [action]
-So that [benefit]
-```
+As a [user type], I want to [action], so that [benefit].
 
 ### Acceptance Criteria
-```
-Given [context]
-When [action]
-Then [expected result]
+Given [context], when [action], then [expected result].
 ```
 
 ## Best Practices
 
-- Be specific and measurable
-- Avoid technical jargon with non-technical stakeholders
-- Document assumptions and constraints
-- Keep requirements traceable
-- Update as project evolves
-```
-
-## Tips
-
-- Make skills reusable - consider if other agents could use them
-- Keep SKILL.md concise - use references/ for lengthy content
+- Keep skills single-purpose and reusable across agents
+- Keep SKILL.md under 500 lines; use `references/` for lengthy content
 - Include practical examples
-- Test skills with different agents
-- Version skills independently from agents
+- Version skills independently
+- Test each skill with different agents
+- Make skills portable — consider if other agents or projects could use them

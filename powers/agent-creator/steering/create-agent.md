@@ -1,30 +1,48 @@
-# Creating a Chart AI Agent
+# Creating Custom Agents
 
-This guide walks you through creating a new Chart AI agent from scratch.
+This guide walks you through creating custom agents in Kiro.
 
-## Step 1: Plan Your Agent
+## What Are Custom Agents?
 
-Before creating, define:
+Custom agents are specialized sub-agents with their own system prompts and tool access. They handle specific, recurring tasks autonomously — code review, documentation, testing, and more.
+
+## Agent Structure
+
+Agents are stored in `.kiro/agents/`:
+
+```
+.kiro/
+└── agents/
+    └── your-agent-name.json
+```
+
+## Step 1: Pick a Codename
+
+Every agent needs a personality. Ask the user to choose a fun codename for their agent. Suggest options like:
+
+- **Jarvis** — General-purpose assistant (Iron Man)
+- **Friday** — Monitoring and alerting (Iron Man successor)
+- **Oracle** — Code analysis and review (The Matrix / DC Comics)
+- **Scotty** — Build and infrastructure ("I'm givin' her all she's got!")
+- **Hal** — Testing and QA (2001: A Space Odyssey)
+- **Samwise** — Documentation and support (Lord of the Rings)
+- **Alfred** — Cleanup and maintenance (Batman)
+- **Athena** — Security and compliance (Greek mythology)
+- **Merlin** — Refactoring and transformation (Arthurian legend)
+- **Cortana** — Search and navigation (Halo)
+
+The codename goes in `displayName`. The `name` field stays lowercase-with-hyphens (e.g., `code-reviewer`). Users can pick from the list, remix, or invent their own.
+
+## Step 2: Plan Your Agent
+
+Define before creating:
 - **Purpose**: What specific task will this agent handle?
-- **Skills**: What reusable skills does it need?
+- **Tools**: Which tools does it need? (keep it minimal)
 - **Workflow**: What's the step-by-step process?
-
-## Step 2: Create Agent Directory
-
-Create the agent folder with proper naming:
-
-```bash
-mkdir -p .kiro/agents/your-agent-name
-```
-
-Example:
-```bash
-mkdir -p .kiro/agents/code-reviewer
-```
 
 ## Step 3: Create Agent Configuration
 
-Create `agent.json` or `your-agent-name.json`:
+Create a JSON file in `.kiro/agents/`:
 
 ```json
 {
@@ -32,7 +50,7 @@ Create `agent.json` or `your-agent-name.json`:
   "displayName": "Agent Name",
   "description": "Clear description of what this agent does",
   "systemPrompt": "Detailed instructions for the agent's behavior and approach",
-  "tools": ["readCode", "readFile", "fsWrite"],
+  "tools": ["readCode", "readFile", "getDiagnostics"],
   "examples": [
     {
       "prompt": "Example task",
@@ -42,84 +60,92 @@ Create `agent.json` or `your-agent-name.json`:
 }
 ```
 
-## Step 4: Create Skills Directory
+### Configuration Fields
 
-```bash
-mkdir -p .kiro/agents/your-agent-name/skills
-```
+- `name` — Lowercase with hyphens (e.g., `code-reviewer`)
+- `displayName` — Human-readable (e.g., "Code Reviewer")
+- `description` — What the agent does and when to use it
+- `systemPrompt` — Detailed behavior instructions
+- `tools` — Array of tools the agent can access (keep minimal)
+- `examples` — Sample prompts to guide agent behavior
 
-## Step 5: Add Skills
+## Step 4: Test the Agent
 
-For each skill, create a directory and SKILL.md:
+- Validate JSON syntax
+- Invoke with: `"Use the [agent-name] agent to [task]"`
+- Start with simple tasks, then expand scope
 
-```bash
-mkdir -p .kiro/agents/your-agent-name/skills/skill-name
-```
+## Agent Examples
 
-Create `SKILL.md`:
-
-```markdown
----
-name: skill-name
-description: What this skill does and when to use it (max 1024 chars)
-license: MIT
-metadata:
-  author: Your Name
-  version: "1.0.0"
----
-
-# Skill Name
-
-## Purpose
-
-Clear explanation of what this skill does.
-
-## When to Use
-
-Describe scenarios where this skill should be applied.
-
-## Instructions
-
-Step-by-step instructions for using this skill.
-
-## Examples
-
-Provide concrete examples of the skill in action.
-```
-
-## Step 6: Reference Skills in Agent Config
-
-If using Agent Skills specification, update the agent's configuration to reference skills.
-
-## Step 7: Test the Agent
-
-Validate the configuration:
-- Check JSON syntax
-- Verify skill references
-- Test agent workflow end-to-end
-
-## Example: Code Reviewer Agent
-
+**Code Reviewer (Oracle):**
 ```json
 {
   "name": "code-reviewer",
-  "displayName": "Code Reviewer",
+  "displayName": "Oracle",
   "description": "Reviews code for quality, security, and best practices",
-  "systemPrompt": "Analyze code thoroughly for bugs, security issues, performance problems, and style violations. Provide constructive feedback with specific suggestions.",
+  "systemPrompt": "Analyze code for bugs, security issues, performance problems, and style violations. Provide constructive feedback with specific suggestions.",
   "tools": ["readCode", "getDiagnostics", "grepSearch"],
   "examples": [
     {
       "prompt": "Review this file for issues",
-      "explanation": "Analyze code and provide feedback"
+      "explanation": "Analyze code and provide actionable feedback"
     }
   ]
 }
 ```
 
-## Tips
+**Documentation Writer (Samwise):**
+```json
+{
+  "name": "doc-writer",
+  "displayName": "Samwise",
+  "description": "Creates and updates technical documentation",
+  "systemPrompt": "Create clear documentation with purpose, usage, code examples, and proper formatting.",
+  "tools": ["readCode", "readFile", "fsWrite", "strReplace"]
+}
+```
 
-- Start with 1-2 core skills, add more as needed
-- Keep skills focused and reusable
-- Test each skill independently
-- Document workflows clearly
-- Use semantic versioning for updates
+**Test Generator (Hal):**
+```json
+{
+  "name": "test-generator",
+  "displayName": "Hal",
+  "description": "Generates comprehensive test suites",
+  "systemPrompt": "Generate tests covering happy paths, edge cases, and error handling. Use appropriate assertions and follow testing best practices.",
+  "tools": ["readCode", "fsWrite", "executeBash", "getDiagnostics"]
+}
+```
+
+## Tool Categories
+
+- **Read**: `readCode`, `readFile`, `readMultipleFiles`, `grepSearch`
+- **Write**: `fsWrite`, `fsAppend`, `strReplace`, `editCode`
+- **Analysis**: `getDiagnostics`, `readCode`
+- **Execution**: `executeBash`, `controlBashProcess`
+- **Search**: `grepSearch`, `fileSearch`, `remote_web_search`
+
+## Best Practices
+
+- Each agent should have a focused, single responsibility
+- Grant only the tools necessary for the agent's tasks
+- Provide specific, detailed instructions in the system prompt
+- Include examples to guide behavior
+- Start narrow and expand scope as needed
+- Test with edge cases and unexpected inputs
+
+## Troubleshooting
+
+**Agent not loading?**
+- Check JSON syntax in the configuration file
+- Verify the file is in `.kiro/agents/`
+- Ensure all required fields are present
+
+**Agent not behaving as expected?**
+- Refine the system prompt with more specific instructions
+- Add more examples
+- Check if the agent has the necessary tools
+
+**Agent too slow?**
+- Reduce tool access to only what's needed
+- Make the system prompt more focused
+- Break complex tasks into smaller steps
