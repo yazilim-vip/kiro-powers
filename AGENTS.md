@@ -1,3 +1,49 @@
+# Kiro Powers Collection
+
+A curated collection of Kiro Powers to enhance your development workflow. Powers are packages that extend Kiro's capabilities by bundling documentation, workflow guides (steering files), and optionally MCP servers.
+
+## Available Powers
+
+| Power | Description |
+|-------|-------------|
+| [agent-creator](agent-creator/) | Create and manage custom agents with specialized capabilities |
+| [git-committer](git-committer/) | Well-formatted conventional commits following best practices |
+| [react-mui-dev](react-mui-dev/) | Build React apps with Material-UI using the MUI MCP server |
+
+## Installation
+
+Install individual powers from this repository:
+
+```
+"Install the agent-creator power from https://github.com/yazilim-vip/kiro-powers/tree/main/agent-creator"
+```
+
+Or clone and copy all powers:
+
+```bash
+git clone https://github.com/yazilim-vip/kiro-powers.git
+cp -r kiro-powers/*-*/ ~/.kiro/powers/
+```
+
+## Contributing
+
+1. Fork and create a feature branch: `git checkout -b add-your-power-name`
+2. Add your power directory with `POWER.md` (and optional `steering/`, `mcp.json`)
+3. Commit with conventional commits: `feat(powers): add your-power-name`
+4. Open a pull request
+
+## Resources
+
+- [Kiro Powers Documentation](https://kiro.dev/docs/powers/)
+- [Creating Powers Guide](https://kiro.dev/docs/powers/create/)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+
+## License
+
+MIT
+
+---
+
 # Creating Custom Agents in Kiro
 
 This guide will help you create custom agents to automate specialized tasks in your workflow.
