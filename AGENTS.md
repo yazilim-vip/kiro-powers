@@ -169,13 +169,12 @@ Powers are reusable packages that provide:
 ## Power Structure
 
 ```
-powers/
-└── power-name/
-    ├── POWER.md              # Main documentation (required)
-    ├── mcp.json              # MCP server config (if applicable)
-    └── steering/             # Additional guides (optional)
-        ├── getting-started.md
-        └── best-practices.md
+power-name/
+├── POWER.md              # Main documentation (required)
+├── mcp.json              # MCP server config (if applicable)
+└── steering/             # Additional guides (optional)
+    ├── getting-started.md
+    └── best-practices.md
 ```
 
 ## Creating a Power
@@ -183,7 +182,7 @@ powers/
 ### 1. Create Directory Structure
 
 ```bash
-mkdir -p powers/power-name/steering
+mkdir -p power-name/steering
 ```
 
 ### 2. Create POWER.md
@@ -307,9 +306,9 @@ Keep steering files:
 ## Examples
 
 Good power examples in this repository:
-- `powers/git-committer/` - Clean structure
-- `powers/agent-creator/` - Good documentation
-- `powers/react-mui-dev/` - MCP integration
+- `git-committer/` - Clean structure
+- `agent-creator/` - Good documentation
+- `react-mui-dev/` - MCP integration
 
 ## Naming Conventions
 
