@@ -243,19 +243,72 @@ Minimal setup and examples.
 ## POWER.md Requirements
 
 ### Frontmatter Fields
-- `name`: lowercase-with-hyphens (e.g., `git-committer`)
-- `displayName`: Human-readable (e.g., "Git Committer")
-- `description`: Single sentence
-- `keywords`: Array of 5-10 search terms
-- `version`: Semantic version (1.0.0)
-- `license`: MIT
+- `name`: Lowercase with hyphens (e.g., `react-mui-dev`, `git-committer`)
+- `displayName`: Human-readable title (e.g., "React + Material-UI Development")
+- `description`: Single sentence describing the power's purpose
+- `keywords`: Array of relevant search terms (5-10 keywords)
+- `version`: Semantic version (start with 1.0.0)
+- `license`: MIT (standard for Kiro powers)
+
+### Document Structure Template
+
+After frontmatter, use this structure:
+
+```markdown
+# [Power Display Name]
+
+Brief one-sentence tagline.
+
+## What is [Power Name]?
+
+2-3 sentences explaining purpose.
+
+## Features
+
+- Bullet list of key capabilities (5-8 items max)
+
+## Usage
+
+"Example command or question"
+
+## Quick Start
+
+Minimal setup and code examples.
+
+## Common Patterns
+
+### Pattern Name
+Code example with brief explanation.
+
+## Best Practices
+
+1. **Practice Name**: Brief explanation (5-7 key practices)
+
+## Troubleshooting
+
+**Problem?**
+- Solution
+```
 
 ### Style Guidelines
-- Direct, conversational tone
+
+#### Tone
+- Direct and conversational
 - Action-oriented language
-- Minimal, focused code examples
-- Under 300 lines total
-- Scannable sections with bullets
+- Avoid marketing fluff
+- Be specific and practical
+
+#### Code Examples
+- Keep examples minimal and focused
+- Show real, working code
+- Include comments only when necessary
+- Use proper syntax highlighting
+- Code examples should be < 20 lines each
+
+#### Length
+- Keep POWER.md under 300 lines
+- Each section should be scannable
+- Use bullet points over paragraphs
 
 ### Sections to Include
 1. Title and tagline
@@ -268,10 +321,11 @@ Minimal setup and examples.
 8. Troubleshooting
 
 ### Sections to Avoid
-- Redundant "Overview" sections
-- Exhaustive feature lists
-- Separate "Tips" and "Best Practices"
-- Marketing language
+- Don't create "Overview" and "What This Power Does" separately (redundant)
+- Don't list every possible feature exhaustively
+- Don't include "Tips" and "Best Practices" as separate sections (combine)
+- Avoid "Key Capabilities" if you have "Features"
+- No marketing language
 
 ## MCP Server Integration
 
@@ -320,18 +374,22 @@ Good power examples in this repository:
 
 ## Checklist
 
-Before committing a new power:
+Before committing a new power, verify:
 
 - [ ] Directory structure created
-- [ ] POWER.md has YAML frontmatter
-- [ ] All frontmatter fields complete
-- [ ] Name uses lowercase-with-hyphens
-- [ ] Keywords array has 5-10 terms
-- [ ] Document follows structure guidelines
-- [ ] Code examples use syntax highlighting
+- [ ] YAML frontmatter is present and complete
+- [ ] All required fields are filled
+- [ ] `name` uses lowercase-with-hyphens format
+- [ ] `keywords` array has 5-10 relevant terms
+- [ ] Document starts with `# [Display Name]`
+- [ ] "What is [Name]?" section explains purpose
+- [ ] Features are listed as bullets
+- [ ] Usage examples are provided
+- [ ] Code examples use proper syntax highlighting
+- [ ] No redundant sections
 - [ ] Tone is direct and practical
-- [ ] File under 300 lines
-- [ ] mcp.json included (if using MCP)
+- [ ] File is under 300 lines
+- [ ] mcp.json is included if power uses MCP servers
 - [ ] Steering files focused and actionable
 
 ## Need Help?
