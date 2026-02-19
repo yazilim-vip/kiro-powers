@@ -172,7 +172,7 @@ Powers are reusable packages that provide:
 power-name/
 ├── POWER.md              # Main documentation (required)
 ├── mcp.json              # MCP server config (if applicable)
-└── steering/             # Additional guides (optional)
+└── .steering/            # Optional: Workflow guides (optional)
     ├── getting-started.md
     └── best-practices.md
 ```
@@ -182,7 +182,7 @@ power-name/
 ### 1. Create Directory Structure
 
 ```bash
-mkdir -p power-name/steering
+mkdir -p power-name/.steering
 ```
 
 ### 2. Create POWER.md
@@ -302,6 +302,7 @@ Keep steering files:
 - Focused on specific workflows
 - Separate from POWER.md content
 - Actionable and practical
+- Stored in `.steering/` directory (dot-prefix to keep them hidden)
 
 ## Examples
 

@@ -144,7 +144,7 @@ powers/
 └── power-name/
     ├── POWER.md              # Main documentation (required)
     ├── mcp.json              # MCP server config (if applicable)
-    └── steering/             # Additional guides (optional)
+    └── .steering/            # Optional: Workflow guides
         ├── getting-started.md
         └── best-practices.md
 ```

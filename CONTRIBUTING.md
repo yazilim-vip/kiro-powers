@@ -11,7 +11,7 @@ powers/
 └── your-power-name/
     ├── power.json          # Required: Power metadata
     ├── POWER.md           # Required: Documentation
-    ├── steering/          # Optional: Workflow guides
+    ├── .steering/         # Optional: Workflow guides
     │   └── guide.md
     └── mcpServers/        # Optional: MCP server configs (note: not "mcp")
         └── server-name/
@@ -108,10 +108,10 @@ Common issues and solutions
 
 ### Steering Files
 
-Add workflow guides in the `steering/` directory for specific tasks:
+Add workflow guides in the `.steering/` directory for specific tasks:
 
 ```
-steering/
+.steering/
 ├── getting-started.md
 ├── advanced-workflows.md
 └── troubleshooting.md
