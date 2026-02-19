@@ -75,7 +75,7 @@ Each power in this repository follows this structure:
 powers/
 └── power-name/
     ├── POWER.md           # Required: Documentation with frontmatter
-    └── .steering/         # Optional: Workflow guides
+    └── steering/          # Optional: Workflow guides
         └── guide.md
 ```
 
@@ -114,7 +114,7 @@ The POWER.md content should include:
 
 ### Steering Files (Optional)
 
-Additional workflow guides in the `.steering/` directory provide detailed instructions for specific use cases. These are regular markdown files without frontmatter.
+Additional workflow guides in the `steering/` directory provide detailed instructions for specific use cases. These are regular markdown files without frontmatter.
 
 ## Creating New Powers
 
@@ -123,7 +123,7 @@ To create a new power:
 1. Create a directory under `powers/` with a descriptive name (lowercase-with-hyphens)
 2. Create `POWER.md` with proper YAML frontmatter (see structure above)
 3. Write clear documentation with usage examples and best practices
-4. Optionally add `.steering/` directory with workflow guides for complex use cases
+4. Optionally add `steering/` directory with workflow guides for complex use cases
 
 Follow the structure of existing powers as examples. The official documentation is at [kiro.dev/docs/powers/create/](https://kiro.dev/docs/powers/create/).
 

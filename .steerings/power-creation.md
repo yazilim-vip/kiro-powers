@@ -1,6 +1,6 @@
 ---
 inclusion: auto
-fileMatchPattern: "powers/**/POWER.md"
+fileMatchPattern: "**/POWER.md"
 ---
 
 # Kiro Power Creation Guidelines
@@ -140,11 +140,10 @@ Brief explanation.
 A complete power should have:
 
 ```
-powers/
-└── power-name/
+power-name/
     ├── POWER.md              # Main documentation (required)
     ├── mcp.json              # MCP server config (if applicable)
-    └── .steering/            # Optional: Workflow guides
+    └── steering/             # Optional: Workflow guides
         ├── getting-started.md
         └── best-practices.md
 ```
@@ -160,8 +159,8 @@ If your power includes steering files:
 ## Examples to Follow
 
 Good examples in this repository:
-- `powers/git-committer/POWER.md` - Clean structure, clear sections
-- `powers/agent-creator/POWER.md` - Good use of examples
+- `git-committer/POWER.md` - Clean structure, clear sections
+- `agent-creator/POWER.md` - Good use of examples
 
 ## Checklist
 
